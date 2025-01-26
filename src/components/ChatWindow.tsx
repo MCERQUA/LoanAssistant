@@ -48,7 +48,7 @@ function ThinkingIndicator() {
 export function ChatWindow() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
-  const [isLoading, setIsLoading] = useState(true); // Start with loading true for initial message
+  const [isLoading, setIsLoading] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const initialized = useRef(false);
 
@@ -58,7 +58,7 @@ export function ChatWindow() {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, isLoading]); // Also scroll when loading state changes
+  }, [messages, isLoading]);
 
   useEffect(() => {
     if (!initialized.current) {
@@ -110,11 +110,11 @@ export function ChatWindow() {
   };
 
   return (
-    <div className="bg-gray-800/50 rounded-lg backdrop-blur-sm border border-gray-700/50 shadow-xl relative">
+    <div className="h-full flex flex-col bg-gray-800/50 rounded-lg backdrop-blur-sm border border-gray-700/50 shadow-xl relative">
       <div className="absolute -inset-[1px] bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg blur-sm -z-10"></div>
       <div className="absolute -inset-[1px] bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg blur-md -z-20"></div>
 
-      <div className="h-[60vh] overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.map((message, index) => (
           <div
             key={index}

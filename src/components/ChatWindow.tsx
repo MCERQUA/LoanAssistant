@@ -8,11 +8,14 @@ interface Message {
 }
 
 function formatAIResponse(text: string): string {
-  // Add line breaks before numbered items and bullet points
-  text = text.replace(/(\d+\.|•|\*)/g, '\n$1');
+  // Convert markdown-style headings to styled text
+  text = text.replace(/\*\*(.*?)\*\*/g, (_, content) => content);
   
-  // Add line breaks before sections with asterisks
-  text = text.replace(/\*\*(.*?)\*\*/g, '\n**$1**');
+  // Add line breaks before numbered items
+  text = text.replace(/(\d+\.)/g, '\n$1');
+  
+  // Add line breaks before bullet points
+  text = text.replace(/([•])/g, '\n$1');
   
   // Remove any extra line breaks
   text = text.replace(/\n{3,}/g, '\n\n');

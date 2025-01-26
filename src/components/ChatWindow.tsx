@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Send, Bot } from 'lucide-react';
+import { Send, Bot, MoreHorizontal } from 'lucide-react';
 import { openaiService } from '../services/openai';
 
 interface Message {
@@ -7,10 +7,45 @@ interface Message {
   isBot: boolean;
 }
 
+function formatAIResponse(text: string): string {
+  // Add line breaks before numbered items and bullet points
+  text = text.replace(/(\d+\.|•|\*)/g, '\n$1');
+  
+  // Add line breaks before sections with asterisks
+  text = text.replace(/\*\*(.*?)\*\*/g, '\n**$1**');
+  
+  // Remove any extra line breaks
+  text = text.replace(/\n{3,}/g, '\n\n');
+  
+  // Trim extra whitespace
+  return text.trim();
+}
+
+function ThinkingIndicator() {
+  return (
+    <div className="flex justify-start">
+      <div className="max-w-[80%] rounded-2xl px-4 py-2 bg-gray-700 rounded-tl-sm">
+        <div className="flex items-center gap-2 mb-1">
+          <Bot className="w-4 h-4" />
+          <span className="text-sm font-medium text-blue-300">Loan Assistant</span>
+        </div>
+        <div className="flex items-center gap-2 text-gray-400">
+          <span>Thinking</span>
+          <div className="flex gap-1">
+            <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
+            <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+            <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function ChatWindow() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Start with loading true for initial message
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const initialized = useRef(false);
 
@@ -20,12 +55,11 @@ export function ChatWindow() {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, isLoading]); // Also scroll when loading state changes
 
   useEffect(() => {
     if (!initialized.current) {
       initialized.current = true;
-      // Send initial hidden message to get context
       const initializeChat = async () => {
         try {
           const response = await openaiService.sendMessage("who are you and why are you here");
@@ -36,6 +70,8 @@ export function ChatWindow() {
             content: "Hello! I'm your AI Loan Assistant. How can I help you today?",
             isBot: true,
           }]);
+        } finally {
+          setIsLoading(false);
         }
       };
       initializeChat();
@@ -50,14 +86,12 @@ export function ChatWindow() {
     setInput('');
     setIsLoading(true);
 
-    // Add user message immediately
     setMessages(prev => [...prev, { content: userMessage, isBot: false }]);
 
     try {
       const response = await openaiService.sendMessage(userMessage);
-      
-      // Add assistant response
-      setMessages(prev => [...prev, { content: response, isBot: true }]);
+      const formattedResponse = formatAIResponse(response);
+      setMessages(prev => [...prev, { content: formattedResponse, isBot: true }]);
     } catch (error) {
       console.error('Error sending message:', error);
       setMessages(prev => [
@@ -96,10 +130,11 @@ export function ChatWindow() {
                   <span className="text-sm font-medium text-blue-300">Loan Assistant</span>
                 </div>
               )}
-              <p className="text-gray-100">{message.content}</p>
+              <p className="text-gray-100 whitespace-pre-line">{message.content}</p>
             </div>
           </div>
         ))}
+        {isLoading && <ThinkingIndicator />}
         <div ref={messagesEndRef} />
       </div>
 

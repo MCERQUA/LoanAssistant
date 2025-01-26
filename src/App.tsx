@@ -8,15 +8,15 @@ function App() {
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-gray-100">
-      {/* Fixed Top Menu */}
-      <div className="fixed top-0 left-0 right-0 z-20 bg-gray-900/90 backdrop-blur-md border-b border-gray-700/50">
+      {/* Top Menu - Not fixed anymore */}
+      <div className="bg-gray-900/90 backdrop-blur-md border-b border-gray-700/50">
         <div className="max-w-4xl mx-auto px-3 py-2">
           <TopMenu isOpen={isMenuOpen} onToggle={() => setIsMenuOpen(!isMenuOpen)} />
         </div>
       </div>
       
-      {/* Main Content Area with proper padding for fixed menus */}
-      <div className="flex-1 overflow-hidden pt-12 pb-20">
+      {/* Main Content Area */}
+      <div className="flex-1 overflow-hidden pb-20">
         <div className="max-w-4xl mx-auto px-3 h-full">
           <ChatWindow />
         </div>

@@ -8,15 +8,11 @@ interface Message {
 }
 
 export function ChatWindow() {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      content: "Hello! I'm your AI Loan Assistant. How can I help you today?",
-      isBot: true,
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const initialized = useRef(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -25,6 +21,26 @@ export function ChatWindow() {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    if (!initialized.current) {
+      initialized.current = true;
+      // Send initial hidden message to get context
+      const initializeChat = async () => {
+        try {
+          const response = await openaiService.sendMessage("who are you and why are you here");
+          setMessages([{ content: response, isBot: true }]);
+        } catch (error) {
+          console.error('Error initializing chat:', error);
+          setMessages([{
+            content: "Hello! I'm your AI Loan Assistant. How can I help you today?",
+            isBot: true,
+          }]);
+        }
+      };
+      initializeChat();
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -77,7 +93,7 @@ export function ChatWindow() {
               {message.isBot && (
                 <div className="flex items-center gap-2 mb-1">
                   <Bot className="w-4 h-4" />
-                  <span className="text-sm font-medium text-blue-300">AI Assistant</span>
+                  <span className="text-sm font-medium text-blue-300">Loan Assistant</span>
                 </div>
               )}
               <p className="text-gray-100">{message.content}</p>

@@ -16,12 +16,12 @@ function App() {
       </div>
       
       {/* Main Content Area */}
-      <div className="flex-1 overflow-hidden pb-20">
+      <div className="flex-1 overflow-hidden pb-20 pt-6">
         <div className="max-w-4xl mx-auto px-3 h-full">
           <ChatWindow />
         </div>
       </div>
-      
+
       {/* Side Menu Panel */}
       <div
         className={`fixed inset-y-0 right-0 w-64 bg-gray-800/95 backdrop-blur-md transform transition-transform duration-300 ease-in-out ${

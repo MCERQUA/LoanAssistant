@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Send, Bot, MoreHorizontal } from 'lucide-react';
+import { Send, Bot } from 'lucide-react';
 import { openaiService } from '../services/openai';
 
 interface Message {
@@ -101,7 +101,7 @@ export function ChatWindow() {
   };
 
   return (
-    <div className="h-full flex flex-col bg-gray-800/50 rounded-lg backdrop-blur-sm border border-gray-700/50 shadow-xl relative mt-4">
+    <div className="h-full flex flex-col bg-gray-800/50 rounded-lg backdrop-blur-sm border border-gray-700/50 shadow-xl relative">
       <div className="absolute -inset-[1px] bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg blur-sm -z-10"></div>
       <div className="absolute -inset-[1px] bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg blur-md -z-20"></div>
 

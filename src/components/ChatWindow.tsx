@@ -8,19 +8,10 @@ interface Message {
 }
 
 function formatAIResponse(text: string): string {
-  // Convert markdown-style headings to styled text
   text = text.replace(/\*\*(.*?)\*\*/g, (_, content) => content);
-  
-  // Add line breaks before numbered items
   text = text.replace(/(\d+\.)/g, '\n$1');
-  
-  // Add line breaks before bullet points
   text = text.replace(/([•])/g, '\n$1');
-  
-  // Remove any extra line breaks
   text = text.replace(/\n{3,}/g, '\n\n');
-  
-  // Trim extra whitespace
   return text.trim();
 }
 
@@ -110,7 +101,7 @@ export function ChatWindow() {
   };
 
   return (
-    <div className="h-full flex flex-col bg-gray-800/50 rounded-lg backdrop-blur-sm border border-gray-700/50 shadow-xl relative">
+    <div className="h-full flex flex-col bg-gray-800/50 rounded-lg backdrop-blur-sm border border-gray-700/50 shadow-xl relative mt-4">
       <div className="absolute -inset-[1px] bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg blur-sm -z-10"></div>
       <div className="absolute -inset-[1px] bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg blur-md -z-20"></div>
 

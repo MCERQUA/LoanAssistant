@@ -76,7 +76,7 @@ const ChatWindow: React.FC = () => {
       <div className="absolute inset-0 rounded-lg border border-gray-600/50 backdrop-blur-sm"></div>
 
       <div className="relative flex flex-col h-full">
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 pb-20">
           {messages.map((message, index) => (
             <div key={index} className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}>
               <div className={`max-w-[80%] rounded-2xl px-4 py-2 ${
@@ -115,7 +115,7 @@ const ChatWindow: React.FC = () => {
           <div ref={messagesEndRef} />
         </div>
 
-        <form onSubmit={handleSubmit} className="border-t border-gray-600/50 p-3 bg-gradient-to-b from-gray-600/90 to-gray-700/90 backdrop-blur-sm">
+        <form onSubmit={handleSubmit} className="absolute bottom-0 left-0 right-0 border-t border-gray-600/50 p-3 bg-gradient-to-b from-gray-600/90 to-gray-700/90 backdrop-blur-sm">
           <div className="flex gap-2">
             <input
               type="text"

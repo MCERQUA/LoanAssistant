@@ -14,10 +14,10 @@ function App() {
       </div>
       
       {/* Main Content Area */}
-      <div className="flex-1 overflow-hidden flex flex-col px-3 pb-16">
+      <div className="flex-1 overflow-hidden flex flex-col px-3 py-4 pb-20">
         <div className="max-w-4xl w-full mx-auto flex-1 flex flex-col items-center">
           {/* Image Container */}
-          <div className="pt-4 pb-2 w-full max-w-2xl">
+          <div className="pb-4 w-full max-w-2xl">
             <div className="w-full h-64 rounded-lg shadow-lg overflow-hidden">
               <img 
                 src="/Morty-Gage.jpg" 

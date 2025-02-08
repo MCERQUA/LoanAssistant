@@ -14,7 +14,7 @@ export function BottomMenu() {
           href="https://www.relianthomefunding.com/cpt-team-members/andrew-rallo/"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-[1.2] bg-gradient-to-b from-gray-700 to-gray-800 px-3 py-2 rounded-xl text-white font-semibold shadow-lg hover:from-gray-600 hover:to-gray-700 transition-all transform hover:-translate-y-1 active:translate-y-0 text-sm text-center"
+          className="flex-1 bg-gradient-to-b from-gray-700 to-gray-800 px-3 py-2 rounded-xl text-white font-semibold shadow-lg hover:from-gray-600 hover:to-gray-700 transition-all transform hover:-translate-y-1 active:translate-y-0 text-sm text-center"
         >
           Start Now
         </a>

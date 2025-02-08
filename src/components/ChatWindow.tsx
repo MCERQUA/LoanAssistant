@@ -21,7 +21,7 @@ function ThinkingIndicator() {
       <div className="max-w-[80%] rounded-2xl px-4 py-2 bg-gray-700 rounded-tl-sm">
         <div className="flex items-center gap-2 mb-1">
           <Bot className="w-4 h-4" />
-          <span className="text-sm font-medium text-blue-300">Morty Gauge</span>
+          <span className="text-sm font-medium text-blue-300">Morty Gage</span>
         </div>
         <div className="flex items-center gap-2 text-gray-400">
           <span>Thinking</span>
@@ -61,7 +61,7 @@ export function ChatWindow() {
         } catch (error) {
           console.error('Error initializing chat:', error);
           setMessages([{
-            content: "Hello! I'm Morty Gauge, your AI mortgage and loan assistant. How can I help you today?",
+            content: "Hello! I'm Morty Gage, your AI mortgage and loan assistant. How can I help you today?",
             isBot: true,
           }]);
         } finally {
@@ -106,7 +106,7 @@ export function ChatWindow() {
       <div className="absolute -inset-[1px] bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg blur-md -z-20"></div>
 
       {/* Messages Container - Scrollable */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.map((message, index) => (
           <div
             key={index}
@@ -122,7 +122,7 @@ export function ChatWindow() {
               {message.isBot && (
                 <div className="flex items-center gap-2 mb-1">
                   <Bot className="w-4 h-4" />
-                  <span className="text-sm font-medium text-blue-300">Morty Gauge</span>
+                  <span className="text-sm font-medium text-blue-300">Morty Gage</span>
                 </div>
               )}
               <p className="text-gray-100 whitespace-pre-line">{message.content}</p>
@@ -136,20 +136,20 @@ export function ChatWindow() {
       {/* Input Form - Fixed at bottom */}
       <form
         onSubmit={handleSubmit}
-        className="border-t border-gray-700/50 p-4 bg-gray-800/30"
+        className="border-t border-gray-700/50 p-3 bg-gray-800/30"
       >
-        <div className="flex gap-4">
+        <div className="flex gap-2">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about mortgages, loans, interest rates, or application process..."
-            className="flex-1 bg-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-600"
+            placeholder="Ask about mortgages, loans, interest rates..."
+            className="flex-1 bg-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-600"
             disabled={isLoading}
           />
           <button
             type="submit"
-            className={`bg-blue-600 text-white rounded-lg px-4 py-2 transition-colors duration-200 flex items-center gap-2 ${
+            className={`bg-blue-600 text-white rounded-lg px-3 py-2 transition-colors duration-200 flex items-center gap-2 ${
               isLoading 
                 ? 'opacity-50 cursor-not-allowed'
                 : 'hover:bg-blue-700'
@@ -157,7 +157,7 @@ export function ChatWindow() {
             disabled={isLoading}
           >
             <Send className="w-4 h-4" />
-            <span className="hidden sm:inline">{isLoading ? 'Sending...' : 'Send'}</span>
+            <span className="hidden sm:inline text-sm">{isLoading ? 'Sending...' : 'Send'}</span>
           </button>
         </div>
       </form>

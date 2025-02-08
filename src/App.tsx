@@ -16,11 +16,11 @@ function App() {
       </div>
       
       {/* Main Content Area */}
-      <div className="flex-1 overflow-hidden flex flex-col px-3">
+      <div className="flex-1 overflow-hidden flex flex-col">
         <div className="max-w-4xl w-full mx-auto flex-1 flex flex-col items-center">
-          {/* Image Container - Centered and width-constrained */}
-          <div className="pt-4 pb-2 w-full max-w-2xl">
-            <div className="w-full h-64 rounded-lg shadow-lg overflow-hidden">
+          {/* Image Container - Square aspect ratio */}
+          <div className="w-[75%] pt-3">
+            <div className="aspect-square w-full rounded-lg shadow-lg overflow-hidden">
               <img 
                 src="/Morty-Gauge.jpg" 
                 alt="Morty Gauge" 
@@ -29,8 +29,8 @@ function App() {
             </div>
           </div>
           
-          {/* Chat Window - Takes remaining height */}
-          <div className="flex-1 min-h-0 w-full">
+          {/* Chat Window - Takes remaining height with padding */}
+          <div className="flex-1 min-h-0 w-full px-3 pt-3">
             <ChatWindow />
           </div>
         </div>

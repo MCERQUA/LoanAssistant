@@ -7,8 +7,8 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-gray-100">
-      {/* Top Menu - Not fixed anymore */}
+    <div className="fixed inset-0 flex flex-col bg-gradient-to-b from-gray-900 to-gray-800 text-gray-100 overflow-hidden">
+      {/* Top Menu */}
       <div className="bg-gray-900/90 backdrop-blur-md border-b border-gray-700/50">
         <div className="max-w-4xl mx-auto px-3 py-2">
           <TopMenu isOpen={isMenuOpen} onToggle={() => setIsMenuOpen(!isMenuOpen)} />
@@ -16,9 +16,23 @@ function App() {
       </div>
       
       {/* Main Content Area */}
-      <div className="flex-1 overflow-hidden pb-20 pt-6">
-        <div className="max-w-4xl mx-auto px-3 h-full">
-          <ChatWindow />
+      <div className="flex-1 overflow-hidden flex flex-col px-3">
+        <div className="max-w-4xl w-full mx-auto flex-1 flex flex-col items-center">
+          {/* Image Container - Centered and width-constrained */}
+          <div className="pt-4 pb-2 w-full max-w-2xl">
+            <div className="w-full h-64 rounded-lg shadow-lg overflow-hidden">
+              <img 
+                src="/Morty-Gauge.jpg" 
+                alt="Morty Gauge" 
+                className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+          </div>
+          
+          {/* Chat Window - Takes remaining height */}
+          <div className="flex-1 min-h-0 w-full">
+            <ChatWindow />
+          </div>
         </div>
       </div>
 
@@ -37,6 +51,7 @@ function App() {
         </nav>
       </div>
 
+      {/* Bottom Menu */}
       <BottomMenu />
     </div>
   );

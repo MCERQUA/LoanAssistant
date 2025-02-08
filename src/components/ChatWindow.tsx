@@ -105,7 +105,8 @@ export function ChatWindow() {
       <div className="absolute -inset-[1px] bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg blur-sm -z-10"></div>
       <div className="absolute -inset-[1px] bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg blur-md -z-20"></div>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      {/* Messages Container - Scrollable */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0">
         {messages.map((message, index) => (
           <div
             key={index}
@@ -132,6 +133,7 @@ export function ChatWindow() {
         <div ref={messagesEndRef} />
       </div>
 
+      {/* Input Form - Fixed at bottom */}
       <form
         onSubmit={handleSubmit}
         className="border-t border-gray-700/50 p-4 bg-gray-800/30"

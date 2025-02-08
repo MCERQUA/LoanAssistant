@@ -20,7 +20,7 @@ export function BottomMenu() {
         </a>
         
         <a 
-          href="https://twitter.com/MortyGage"
+          href="https://twitter.com/Morty_Gage"
           target="_blank"
           rel="noopener noreferrer" 
           className="flex-1 bg-gradient-to-b from-gray-800 to-gray-900 px-2 py-2 rounded-xl text-gray-200 font-medium shadow-lg hover:from-gray-700 hover:to-gray-800 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-1 sm:gap-2"

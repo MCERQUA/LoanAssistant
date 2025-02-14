@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom Scrollbar - Only affects chat container */
+.chat-messages-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) rgba(31, 41, 55, 0.1);
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+.chat-messages-container::-webkit-scrollbar {
+  width: 8px; /* Slightly wider for better visibility */
+}
+
+.chat-messages-container::-webkit-scrollbar-track {
+  background: rgba(31, 41, 55, 0.2);
+  border-radius: 4px;
+  margin: 4px 0; /* Add some space around the track */
+}
+
+.chat-messages-container::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.5);
+  border-radius: 4px;
+  border: 2px solid rgba(31, 41, 55, 0.2);
+}
+
+.chat-messages-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.7);
+}

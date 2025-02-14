@@ -76,7 +76,8 @@ const ChatWindow: React.FC = () => {
       <div className="absolute inset-0 rounded-lg border border-gray-600/50 backdrop-blur-sm"></div>
 
       <div className="relative flex flex-col h-full">
-        <div className="flex-1 overflow-y-auto p-4 space-y-4 pb-20">
+        {/* Added max-h-[calc(100vh-180px)] to ensure proper scrolling height */}
+        <div className="flex-1 overflow-y-auto max-h-[calc(100vh-180px)] p-4 space-y-4 pb-20 chat-messages-container">
           {messages.map((message, index) => (
             <div key={index} className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}>
               <div className={`max-w-[80%] rounded-2xl px-4 py-2 ${
